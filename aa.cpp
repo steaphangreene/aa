@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-#include <user.h>
+#include "../user/user.h"
 
 #include "alien.h"
 
@@ -99,7 +99,7 @@ int main(int argc, char **argv)  {
 
 void loadconf()  {
   FILE *cf;
-  cf = U2_FOpenHomeRead(CONF_FN);
+  cf = (FILE *)U2_FOpenHomeRead(CONF_FN);
   if(cf != NULL)  {
     fscanf(cf, "%d %d %d %d %d", &AUTO_BRAKING, &CONTROL_LEFT, &CONTROL_RIGHT,
 	&CONTROL_FIRE, &CONTROL_BRAKE);
@@ -109,7 +109,7 @@ void loadconf()  {
 
 void saveconf()  {
   FILE *cf;
-  cf = U2_FOpenHomeWrite(CONF_FN);
+  cf = (FILE *)U2_FOpenHomeWrite(CONF_FN);
   fprintf(cf, "%d %d %d %d %d\n", AUTO_BRAKING, CONTROL_LEFT, CONTROL_RIGHT,
 	CONTROL_FIRE, CONTROL_BRAKE);
   fclose(cf);
@@ -131,7 +131,7 @@ void highscores()  {
   screen->SetPaletteEntry(7, 0xFF, 0, 0);
   if(Score > 0)  screen->Printf(0, 0, 0, 1, "Your Score: %ld", Score);
   screen->Printf(0, 12, 0, 7, "      --High Scores--\n");
-  hscr = U2_FOpenSystemRead(SCORE_FN);
+  hscr = (FILE *)U2_FOpenSystemRead(SCORE_FN);
 
   for(ctr = 0; ctr < 10; ctr++)  {
     buffer[ctr][0] = 0;
@@ -218,7 +218,7 @@ void highscores()  {
     screen->ClearArea(0, 24+12*ppos, 320, 12);
     screen->Printf(0, 24+12*ppos, 0, 1, "%s\n", dbuffer[ppos]);
     fflush(stdout);
-    hscr = U2_FOpenSystemWrite(SCORE_FN);
+    hscr = (FILE *)U2_FOpenSystemWrite(SCORE_FN);
     for(ctr = 0; ctr < 10; ctr++)  {
       if(dbuffer[ctr][0] != 0)  {
         for(ctr2 = 0; (ctr2 < 49) && (dbuffer[ctr][ctr2] != 0); ctr2++)  {

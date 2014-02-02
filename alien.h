@@ -2,7 +2,7 @@
 #define FLIPPER_TIME	1
 #define FLIPPER_DELAY	8
 
-#include <user.h>
+#include "../user/user.h"
 
 class Aliens  {
   public:

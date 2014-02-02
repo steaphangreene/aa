@@ -1,8 +1,8 @@
 CC=     gcc -O3
-CFLAGS=	`U2-CFlags`
+CFLAGS=	`../user/U2-CFlags`
 USER=	/usr/local/include/user
 ALL=    Makefile
-LIBS=	`U2-Libs`
+LIBS=	`../user/U2-Libs`
 
 aa:	aa.o alien.o death.o $(ALL)
 	$(CC) $(CFLAGS) -o aa aa.o alien.o death.o $(LIBS)

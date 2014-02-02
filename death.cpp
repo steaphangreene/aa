@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include <user.h>
+#include "../user/user.h"
 
 extern int deathxoff[20];
 extern int deathyoff[20];
